@@ -1,3 +1,14 @@
-h1 {
-  color: blue;
+/* #4B2A3C */
+/* #373541 */
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
 }
+
+h1 {
+   color:#373541; 
+}
+
+button {
+    color:#fff;
+    background-color: ;
