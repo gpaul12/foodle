@@ -9,10 +9,10 @@ function getRandomDrink() {
     .then(function (response) {
       return response.json().then(function(data) {
         // console.log('random drink', data);
-        // console.log('strDrink', data.drinks[0].strDrink);
-        // console.log('strDrink', data.drinks[0].strInstructions);
-        // console.log('strDrink', data.drinks[0].strDrinkThumb);
-        // console.log('strDrink', data.drinks[0].strGlass);
+        console.log('strDrink', data.drinks[0].strDrink);
+        console.log('strDrink', data.drinks[0].strInstructions);
+        console.log('strDrink', data.drinks[0].strDrinkThumb);
+        console.log('strDrink', data.drinks[0].strGlass);
         // console.log('strDrink', data.drinks[0].strIngredient1);
 
         var drinkData = data.drinks[0];
