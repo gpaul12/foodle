@@ -12,30 +12,67 @@
     <title>Foodle</title>
   </head>
   <body>
-    <div class="navbar-menu">
+    <nav class="navbar is-info">
       <div class="navbar-start">
-        <h1>Foodle</h1>
+        <h1 class="has-text-left has-text-white is-size-1">Foodle</h1>
       </div>
 
       <div class="navbar-end">
-        <p class="my-foodle">My foodles</p>
+        <p class="has-text-justified has-text-right is-size-4 my-foodle">
+          My foodles
+        </p>
       </div>
-    </div>
+    </nav>
     <div class="card">
       <div class="card-content">
-        <div class="content">
+        <div class="has-text-centered content">
           In the mood for food but don't know what you want?
         </div>
-        <button class="button is-large">foodle!</button>
+        <button class="is-large has-text-centered button is-large is-rounded">
+          foodle!
+        </button>
       </div>
     </div>
     <div class="columns">
-      <div class="column">Your foodle recipe!</div>
-      <div class="column">Your foodle pairing!</div>
+      <div class="column has-text-centered">Your foodle recipe!</div>
+      <div class="column has-text-centered">Your foodle pairing!</div>
     </div>
-    <button class="button is-normal">Clear</button>
-    <button class="button is-normal">Save</button>
-    <div></div>
+    <div class="field has-addons">
+      <p class="control">
+        <button class="button is-normal is-rounded">
+          <span class="icon is-small">
+            <i class="fas fa-align-center"></i>
+          </span>
+          <span>Clear</span>
+        </button>
+      </p>
+      <p class="control">
+        <button class="button is-normal is-rounded">
+          <span class="icon is-small">
+            <i class="fas fa-align-center"></i>
+          </span>
+          <span>Save</span>
+        </button>
+      </p>
+    </div>
+    <!-- <button class="button is-normal is-rounded">Clear</button>
+    <button class="button is-normal is-rounded">Save</button> -->
+    <div class="card">
+      <div class="card-content">
+        <div class="content has-text-centered">My foodles</div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>foodle</strong> by
+          <a href="https://jgthms.com"
+            >Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia
+            Butler</a
+          >
+        </p>
+      </div>
+    </footer>
 
     <script src="./assets/js/script.js"></script>
   </body>
