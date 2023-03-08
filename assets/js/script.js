@@ -1,57 +1,16 @@
-var ingredientsEl = document.getElementById('ingredients');
+// The following two ids need to be added in the html so that the meal and drink ingredients will render
+
+var drinkIngredientsEl = document.getElementById('drinkIngredients');
 var mealIngredientsEl = document.getElementById('mealIngredients');
+var getFoodleButton = document.getElementById('get-foodle');
 
-function getRandomDrink() {
-  var requestUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
-  var ingredients = [];
-  
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json().then(function(data) {
-        // console.log('random drink', data);
-        console.log('strDrink', data.drinks[0].strDrink);
-        console.log('strDrink', data.drinks[0].strInstructions);
-        console.log('strDrink', data.drinks[0].strDrinkThumb);
-        console.log('strDrink', data.drinks[0].strGlass);
-        // console.log('strDrink', data.drinks[0].strIngredient1);
+getFoodleButton.addEventListener('click', function() {
+  // need to add code to clear out the previous foodle search before rendering the new one
+  getRandomMeal();
+  getRandomDrink();
+});
 
-        var drinkData = data.drinks[0];
-        // console.log('drink data', drinkData);
-        for (var key in drinkData) {
-          if (key.startsWith('strIngredient')) {
-            if (!drinkData[key]) {
-              delete drinkData[key];
-            } else {
-              var singleIngredient = drinkData[key];
-              ingredients.push(singleIngredient);
-              // console.log('singleingredient', singleIngredient);
-            }
-          }
-        }
-        renderIngredients(ingredients);
-        // console.log('ingredients', ingredients);
-      });
-    });
-};
-
-function renderIngredients(ingredients) {
-  // console.log('ingredients in render', ingredients);
-
-  var drinkIngredientsHeading = document.createElement('h2');
-  drinkIngredientsHeading.textContent = 'Drink Ingredients';
-  ingredientsEl.appendChild(drinkIngredientsHeading);
-
-  for (var i = 0; i < ingredients.length; i++) {
-    var ingredientEl = document.createElement('p');
-    ingredientEl.textContent = ingredients[i];
-    ingredientsEl.appendChild(ingredientEl);
-  }
-}
-
-getRandomDrink();
-
-
-function getRandomRecipe() {
+function getRandomMeal() {
   var requestRecipe = 'https://www.themealdb.com/api/json/v1/1/random.php';
   var mealIngredients = [];
 
@@ -65,7 +24,6 @@ function getRandomRecipe() {
         // console.log('mealingredients', data.meals[0].strMeal);
 
         var mealData = data.meals[0];
-        console.log('mealData', mealData);
         for (var key in mealData) {
           if (key.startsWith('strIngredient')) {
             if (!mealData[key]) {
@@ -82,7 +40,6 @@ function getRandomRecipe() {
 };
 
 function renderMealIngredients(mealIngredients) {
-  console.log('ingredients in render', mealIngredients);
 
   var mealIngredientsHeading = document.createElement('h2');
   mealIngredientsHeading.textContent = 'Meal Ingredients';
@@ -95,7 +52,43 @@ function renderMealIngredients(mealIngredients) {
   }
 }
 
-getRandomRecipe();
+function getRandomDrink() {
+  var requestUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+  var drinkIngredients = [];
+  
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json().then(function(data) {
+        console.log('strDrink', data.drinks[0].strDrink);
+        console.log('strDrink', data.drinks[0].strInstructions);
+        console.log('strDrink', data.drinks[0].strDrinkThumb);
+        console.log('strDrink', data.drinks[0].strGlass);
 
+        var drinkData = data.drinks[0];
+        for (var key in drinkData) {
+          if (key.startsWith('strIngredient')) {
+            if (!drinkData[key]) {
+              delete drinkData[key];
+            } else {
+              var singleIngredient = drinkData[key];
+              drinkIngredients.push(singleIngredient);
+            }
+          }
+        }
+        renderDrinkIngredients(drinkIngredients);
+      });
+    });
+};
 
+function renderDrinkIngredients(ingredients) {
 
+  var drinkIngredientsHeading = document.createElement('h2');
+  drinkIngredientsHeading.textContent = 'Drink Ingredients';
+  drinkIngredientsEl.appendChild(drinkIngredientsHeading);
+
+  for (var i = 0; i < ingredients.length; i++) {
+    var ingredientEl = document.createElement('p');
+    ingredientEl.textContent = ingredients[i];
+    drinkIngredientsEl.appendChild(ingredientEl);
+  }
+}
