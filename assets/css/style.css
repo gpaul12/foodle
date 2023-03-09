@@ -1,15 +1,42 @@
 /* #4B2A3C */
 /* #373541 */
 
+.navbar {
+    color:#ffffff;
+    background-color: #4B2A3C;
+}
+
+.logo {
+    padding-left:30px;
+}
+
 body {
     font-family:Arial, Helvetica, sans-serif;
 }
 
 h1 {
-   color:#373541; 
+   color:#ffffff; 
 }
 
-button {
-    color:#fff;
+.button {
+    color:#ffffff;
     background-color: #4B2A3C;
+}
+
+.button:hover {
+    color:#dbd9d4;
+}
+
+a {
+    color:#ffffff;
+}
+
+a:hover {
+    color:#dbd9d4;
+}
+
+.footer {
+    color: #ffffff;
+    background-color: #4B2A3C ;
+    width: 100%;
 }
