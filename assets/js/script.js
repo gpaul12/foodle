@@ -3,6 +3,14 @@
 var drinkIngredientsEl = document.getElementById("drinkIngredients");
 var mealIngredientsEl = document.getElementById("mealIngredients");
 var getFoodleButton = document.getElementById("get-foodle");
+var mealPictureEl = document.getElementById("mealPicture");
+var drinkPictureEl = document.getElementById("drinkPicture");
+
+var modalInstructionsEl = document.getElementById("modal-instructions");
+var modalFoodtitleEl = document.getElementById("modal-food-title");
+var modalMealPicEl = document.getElementById("modal-meal-picture");
+var modalDrinkPicEl = document.getElementById("modal-drink-image-container");
+var modalMealIngEl = document.getElementById("modal-ingredients");
 
 getFoodleButton.addEventListener("click", function () {
   // need to add code to clear out the previous foodle search before rendering the new one
@@ -16,11 +24,15 @@ function getRandomMeal() {
 
   fetch(requestRecipe).then(function (response) {
     return response.json().then(function (data) {
-      console.log("random recipe", data);
-      console.log("mealname", data.meals[0].strMeal);
-      console.log("mealpicture", data.meals[0].strMealThumb);
-      console.log("mealrecipe", data.meals[0].strInstructions);
+      // console.log("random recipe", data);
+      // console.log("mealname", data.meals[0].strMeal);
+      // console.log("mealpicture", data.meals[0].strMealThumb);
+      // console.log("mealrecipe", data.meals[0].strInstructions);
       // console.log('mealingredients', data.meals[0].strMeal);
+      modalMealPicEl.setAttribute("src", data.meals[0].strMealThumb);
+      modalInstructionsEl.textContent = data.meals[0].strInstructions;
+      modalFoodtitleEl.textContent = data.meals[0].strMeal;
+      
 
       var mealData = data.meals[0];
       for (var key in mealData) {
@@ -34,6 +46,8 @@ function getRandomMeal() {
         }
       }
       renderMealIngredients(mealIngredients);
+      mealPictureEl.setAttribute("src", data.meals[0].strMealThumb);
+
     });
   });
 }
@@ -56,10 +70,12 @@ function getRandomDrink() {
 
   fetch(requestUrl).then(function (response) {
     return response.json().then(function (data) {
-      console.log("strDrink", data.drinks[0].strDrink);
-      console.log("strDrink", data.drinks[0].strInstructions);
-      console.log("strDrink", data.drinks[0].strDrinkThumb);
-      console.log("strDrink", data.drinks[0].strGlass);
+      // console.log("strDrink", data.drinks[0].strDrink);
+      // console.log("strDrink", data.drinks[0].strInstructions);
+      // console.log("strDrink", data.drinks[0].strDrinkThumb);
+      // console.log("strDrink", data.drinks[0].strGlass);
+      modalDrinkPicEl.setAttribute("src", data.drinks[0].strDrinkThumb);
+
 
       var drinkData = data.drinks[0];
       for (var key in drinkData) {
@@ -73,6 +89,7 @@ function getRandomDrink() {
         }
       }
       renderDrinkIngredients(drinkIngredients);
+      drinkPictureEl.setAttribute("src", data.drinks[0].strDrinkThumb);
     });
   });
 }
