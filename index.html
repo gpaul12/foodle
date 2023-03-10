@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Foodle</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Foodle</title>
-</head>
+  <body>
+    <nav class="navbar p-4 columns is-mobile">
+      <div class="navbar-start column logo">
+        <h1 class="has-text-left is-size-1">foodle</h1>
+      </div>
 
-<body>
-  <nav class="navbar p-4 columns is-mobile">
-    <div class="navbar-start column logo">
-      <h1 class="has-text-left is-size-1">foodle</h1>
-    </div>
-
-    <div class="navbar-end column has-text-right is-size-4 my-foodle">
-      <a class="" href="#foodle-pairings">
-        My foodles</a>
-    </div>
-  </nav>
-  <main class=".container is-fluid mx-6">
-    <div class="card my-3">
-      <div class="card-content">
-        <div class="has-text-centered content">
-          <h2>In the mood for food but don't know what you want?</h2>
-        </div>
-        <div class="columns is-centered">
-          <button id="get-foodle" class="is-large has-text-centered button is-large is-rounded is-half">
-            foodle!
-          </button>
+      <div class="navbar-end column has-text-right is-size-4 my-foodle">
+        <a class="" href="#foodle-pairings"> My foodles</a>
+      </div>
+    </nav>
+    <main class=".container is-fluid mx-6">
+      <div class="card my-3">
+        <div class="card-content">
+          <div class="has-text-centered content">
+            <h2>In the mood for food but don't know what you want?</h2>
+          </div>
+          <div class="columns is-centered">
+            <button
+              id="get-foodle"
+              class="is-large has-text-centered button is-large is-rounded is-half"
+            >
+              foodle!
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- <div class="columns">
+      <!-- <div class="columns">
       <div class="column has-text-centered" id="mealIngredients">
         <h2>Your foodle recipe!</h2>
 
@@ -44,67 +48,103 @@
       </div>
     </div> -->
 
-    <div class="columns">
-      <div class="card column">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-          </figure>
+      <div class="columns">
+        <div class="card column">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="https://bulma.io/images/placeholders/1280x960.png"
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <div class="has-text-centered" id="mealIngredients">
+                <h2>Your foodle recipe!</h2>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <div class="content">
-            <div class="has-text-centered" id="mealIngredients">
-              <h2>Your foodle recipe!</h2>
+
+        <div class="card column">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="https://bulma.io/images/placeholders/1280x960.png"
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <div class="has-text-centered" id="drinkIngredients">
+                <h2>Your foodle pairing!</h2>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card column">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <div class="has-text-centered" id="drinkIngredients">
-              <h2>Your foodle pairing!</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <!-- jamie: adding these temporarily to show that they render when foodle button is clicked -->
-    <!-- <section id="drinkIngredients"></section>
+      <!-- jamie: adding these temporarily to show that they render when foodle button is clicked -->
+      <!-- <section id="drinkIngredients"></section>
     <section id="mealIngredients"></section> -->
-    <div class="columns is-centered my-3">
-      <button class="button is-normal is-rounded">Clear</button>
-      <button class="button is-normal is-rounded">Save</button>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <div class="content has-text-centered" id="foodle-pairings">
-          <h2>My foodles</h2>
+      <div class="columns is-centered my-3">
+        <button class="button is-normal is-rounded">Clear</button>
+        <button class="button is-normal is-rounded">Save</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="content has-text-centered" id="foodle-pairings">
+            <h2>My foodles</h2>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        foodle by
-        <a href="https://jgthms.com">Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia
-          Butler</a>
-      </p>
-    </div>
-  </footer>
 
-  <script src="./assets/js/script.js"></script>
-</body>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title" id="modal-title">
+              Placeholder for Food and Drink Title
+            </p>
+            <button class="delete" aria-label="close" id="close-btn"></button>
+          </header>
+          <section class="modal-card-body">
+            <!-- Content ... -->
+            <div id="modal-food-title">Food Title</div>
+            <div id="modal-instructions-title">Instructions</div>
+            <div id="modal-instructions">Instructions placeholder</div>
+            <div id="modal-ingredients-title">Ingredients</div>
+            <div id="modal-ingredients">
+              Ingredients placeholder with two columns hopefully
+            </div>
+            <div id="modal-pairing-phrase">
+              Enjoy your Food with your Drink!
+            </div>
+            <div id="modal-drink-image-container">placeholder</div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" id="save-foodle-btn">
+              Save Foodle
+            </button>
+            <button class="button" id="cancel-btn">Cancel</button>
+          </footer>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          foodle by
+          <a href="https://jgthms.com"
+            >Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia
+            Butler</a
+          >
+        </p>
+      </div>
+    </footer>
 
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
