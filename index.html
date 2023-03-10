@@ -90,7 +90,11 @@
       <!-- <section id="drinkIngredients"></section>
     <section id="mealIngredients"></section> -->
       <div class="columns is-centered my-3">
-        <button class="button is-normal is-rounded" id="details-btn">
+        <button
+          class="button is-normal is-rounded js-modal-trigger"
+          data-target="details-modal"
+          id="details-btn"
+        >
           View Details
         </button>
         <button class="button is-normal is-rounded">Clear</button>
@@ -104,7 +108,7 @@
         </div>
       </div>
 
-      <div class="modal">
+      <div class="modal" id="details-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
