@@ -5,6 +5,8 @@ var mealPictureEl = document.getElementById("mealPicture");
 var drinkPictureEl = document.getElementById("drinkPicture");
 var saveButton = document.getElementById('save-button');
 var clearButton = document.getElementById('clear-button');
+var myFoodlesEl = document.getElementById('myFoodles');
+
 var myFoodles = [];
 var mealResult;
 var drinkResult;
@@ -19,15 +21,19 @@ getFoodleButton.addEventListener("click", function () {
   // need to add code to clear out the previous foodle search before rendering the new one
   mealResult = getRandomMeal();
   drinkResult = getRandomDrink();
-
-  console.log('results', mealResult, drinkResult);
 });
 
 saveButton.addEventListener('click', function() {
 
   var myFoodle = {
-    mealIngredients: mealResult,
-    drinkIngredients: drinkResult,
+    mealIngredients: mealResult.ingredients,
+    mealImg: mealResult.img,
+    mealTitle: mealResult.title,
+    mealInstructions: mealResult.instructions,
+    drinkIngredients: drinkResult.ingredients,
+    drinkImg: drinkResult.img,
+    drinkTitle: drinkResult.title,
+    drinkInstructions: drinkResult.instructions,
   };
 
   console.log('myFoodle', myFoodle);
@@ -40,6 +46,7 @@ saveButton.addEventListener('click', function() {
 
   myFoodles.push(myFoodle);
   localStorage.setItem('myFoodles', JSON.stringify(myFoodles));
+  renderMyFoodles();
 });
 
 clearButton.addEventListener('click', function(){
@@ -48,15 +55,17 @@ clearButton.addEventListener('click', function(){
 
 function getRandomMeal() {
   var requestRecipe = "https://www.themealdb.com/api/json/v1/1/random.php";
-  var mealIngredients = [];
+  var meal = {
+    ingredients: [],
+  };
 
   fetch(requestRecipe).then(function (response) {
     return response.json().then(function (data) {
-      // console.log("random recipe", data);
-      // console.log("mealname", data.meals[0].strMeal);
-      // console.log("mealpicture", data.meals[0].strMealThumb);
-      // console.log("mealrecipe", data.meals[0].strInstructions);
-      // console.log('mealingredients', data.meals[0].strMeal);
+
+      meal.img = data.meals[0].strMealThumb;
+      meal.title = data.meals[0].strMeal;
+      meal.instructions = data.meals[0].strInstructions;
+
       modalMealPicEl.setAttribute("src", data.meals[0].strMealThumb);
       modalInstructionsEl.textContent = data.meals[0].strInstructions;
       modalFoodtitleEl.textContent = data.meals[0].strMeal;
@@ -69,16 +78,16 @@ function getRandomMeal() {
             delete mealData[key];
           } else {
             var singleMealIngredient = mealData[key];
-            mealIngredients.push(singleMealIngredient);
+            meal.ingredients.push(singleMealIngredient);
           }
         }
       }
       renderMealIngredients(mealIngredients);
       mealPictureEl.setAttribute("src", data.meals[0].strMealThumb);
-
     });
   });
-  return mealIngredients;
+
+  return meal;
 }
 
 function renderMealIngredients(mealIngredients) {
@@ -95,14 +104,17 @@ function renderMealIngredients(mealIngredients) {
 
 function getRandomDrink() {
   var requestUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-  var drinkIngredients = [];
+  var drink = {
+    ingredients: [],
+  };
 
   fetch(requestUrl).then(function (response) {
     return response.json().then(function (data) {
-      // console.log("strDrink", data.drinks[0].strDrink);
-      // console.log("strDrink", data.drinks[0].strInstructions);
-      // console.log("strDrink", data.drinks[0].strDrinkThumb);
-      // console.log("strDrink", data.drinks[0].strGlass);
+
+      drink.img = data.drinks[0].strDrinkThumb;
+      drink.title = data.drinks[0].strDrink;
+      drink.instructions = data.drinks[0].strInstructions;
+
       modalDrinkPicEl.setAttribute("src", data.drinks[0].strDrinkThumb);
 
 
@@ -113,7 +125,7 @@ function getRandomDrink() {
             delete drinkData[key];
           } else {
             var singleIngredient = drinkData[key];
-            drinkIngredients.push(singleIngredient);
+            drink.ingredients.push(singleIngredient);
           }
         }
       }
@@ -121,7 +133,7 @@ function getRandomDrink() {
       drinkPictureEl.setAttribute("src", data.drinks[0].strDrinkThumb);
     });
   });
-  return drinkIngredients;
+  return drink;
 }
 
 function renderDrinkIngredients(ingredients) {
@@ -185,3 +197,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+function renderMyFoodles() {
+  var savedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
+
+  for (var i = 0; i < savedFoodles.length; i++) {
+    var myFoodlesMealPic = document.createElement('img');
+    myFoodlesMealPic.setAttribute('src', savedFoodles[i].mealImg);
+    myFoodlesEl.appendChild(myFoodlesMealPic);
+  }
+}
+
+renderMyFoodles();
