@@ -39,8 +39,6 @@ saveButton.addEventListener('click', function() {
     drinkInstructions: drinkResult.instructions,
   };
 
-  console.log('myFoodle', myFoodle);
-
   var storedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
 
   if (storedFoodles !== null) {
@@ -61,6 +59,7 @@ function getRandomMeal() {
   var requestRecipe = "https://www.themealdb.com/api/json/v1/1/random.php";
   var meal = {
     ingredients: [],
+    measurements: [],
   };
 
   fetch(requestRecipe).then(function (response) {
@@ -76,7 +75,6 @@ function getRandomMeal() {
 
       modalTitle.textContent = data.meals[0].strMeal;
       
-
       var mealData = data.meals[0];
       for (var key in mealData) {
         if (key.startsWith("strIngredient")) {
@@ -88,24 +86,36 @@ function getRandomMeal() {
           }
         }
       }
+
+      for (var key in mealData) {
+        if (key.startsWith("strMeasure")) {
+          if (!mealData[key]) {
+            delete mealData[key];
+          } else {
+            var singleMealMeasurement = mealData[key];
+            meal.measurements.push(singleMealMeasurement);
+          }
+        }
+      }
       renderMealIngredients(meal);
-      mealPictureEl.setAttribute("src", data.meals[0].strMealThumb);
     });
   });
+  
 
   return meal;
 }
 
 function renderMealIngredients(meal) {
-  console.log('meal', meal);
 
   var mealIngredientsHeading = document.createElement("h2");
   mealIngredientsHeading.textContent = "Meal Ingredients";
   mealIngredientsEl.appendChild(mealIngredientsHeading);
 
+  mealPictureEl.setAttribute('src', meal.img);
+
   for (var i = 0; i < meal.ingredients.length; i++) {
     var mealIngredientEl = document.createElement("p");
-    mealIngredientEl.textContent = meal.ingredients[i];
+    mealIngredientEl.textContent = meal.measurements[i] + ' ' + meal.ingredients[i];
     mealIngredientsEl.appendChild(mealIngredientEl);
   }
 }
@@ -114,6 +124,7 @@ function getRandomDrink() {
   var requestUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
   var drink = {
     ingredients: [],
+    measurements: [],
   };
 
   fetch(requestUrl).then(function (response) {
@@ -136,23 +147,34 @@ function getRandomDrink() {
           }
         }
       }
+
+      for (var key in drinkData) {
+        if (key.startsWith("strMeasure")) {
+          if (!drinkData[key]) {
+            delete drinkData[key];
+          } else {
+            var singleIngredient = drinkData[key];
+            drink.measurements.push(singleIngredient);
+          }
+        }
+      }
       renderDrinkIngredients(drink);
-      drinkPictureEl.setAttribute("src", data.drinks[0].strDrinkThumb);
     });
   });
   return drink;
 }
 
 function renderDrinkIngredients(drink) {
-  console.log('drink', drink);
 
   var drinkIngredientsHeading = document.createElement("h2");
   drinkIngredientsHeading.textContent = "Drink Ingredients";
   drinkIngredientsEl.appendChild(drinkIngredientsHeading);
 
+  drinkPictureEl.setAttribute('src', drink.img);
+
   for (var i = 0; i < drink.ingredients.length; i++) {
     var ingredientEl = document.createElement('p');
-    ingredientEl.textContent = drink.ingredients[i];
+    ingredientEl.textContent = drink.measurements[i] + ' ' + drink.ingredients[i];
     drinkIngredientsEl.appendChild(ingredientEl);
   }
 }
@@ -209,14 +231,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function renderMyFoodles() {
   var savedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
-  console.log('savedFoodles', savedFoodles);
 
   if (savedFoodles) {
 
     for (var i = 0; i < savedFoodles.length; i++) {
+
+      // jamie - rendering saved meal information
+
+      var myFoodlesMealTitle = document.createElement('h2');
+      myFoodlesMealTitle.textContent = savedFoodles[i].mealTitle;
+      myFoodlesEl.appendChild(myFoodlesMealTitle);
+
       var myFoodlesMealPic = document.createElement('img');
       myFoodlesMealPic.setAttribute('src', savedFoodles[i].mealImg);
       myFoodlesEl.appendChild(myFoodlesMealPic);
+
+      // jamie - rendering saved drink information
+
+      var myFoodlesDrinkTitle = document.createElement('h2');
+      myFoodlesDrinkTitle.textContent = savedFoodles[i].drinkTitle;
+      myFoodlesEl.appendChild(myFoodlesDrinkTitle);
+
+      var myFoodlesDrinkPic = document.createElement('img');
+      myFoodlesDrinkPic.setAttribute('src', savedFoodles[i].drinkImg);
+      myFoodlesEl.appendChild(myFoodlesDrinkPic);
     }
   }
 }
