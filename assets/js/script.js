@@ -1,10 +1,13 @@
-// The following two ids need to be added in the html so that the meal and drink ingredients will render
-
 var drinkIngredientsEl = document.getElementById("drinkIngredients");
 var mealIngredientsEl = document.getElementById("mealIngredients");
 var getFoodleButton = document.getElementById("get-foodle");
 var mealPictureEl = document.getElementById("mealPicture");
 var drinkPictureEl = document.getElementById("drinkPicture");
+var saveButton = document.getElementById('save-button');
+var clearButton = document.getElementById('clear-button');
+var myFoodles = [];
+var mealResult;
+var drinkResult;
 
 var modalInstructionsEl = document.getElementById("modal-instructions");
 var modalFoodtitleEl = document.getElementById("modal-food-title");
@@ -14,8 +17,33 @@ var modalMealIngEl = document.getElementById("modal-ingredients");
 
 getFoodleButton.addEventListener("click", function () {
   // need to add code to clear out the previous foodle search before rendering the new one
-  getRandomMeal();
-  getRandomDrink();
+  mealResult = getRandomMeal();
+  drinkResult = getRandomDrink();
+
+  console.log('results', mealResult, drinkResult);
+});
+
+saveButton.addEventListener('click', function() {
+
+  var myFoodle = {
+    mealIngredients: mealResult,
+    drinkIngredients: drinkResult,
+  };
+
+  console.log('myFoodle', myFoodle);
+
+  var storedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
+
+  if (storedFoodles !== null) {
+    myFoodles = storedFoodles;
+  }
+
+  myFoodles.push(myFoodle);
+  localStorage.setItem('myFoodles', JSON.stringify(myFoodles));
+});
+
+clearButton.addEventListener('click', function(){
+  localStorage.removeItem('myFoodles');
 });
 
 function getRandomMeal() {
@@ -50,6 +78,7 @@ function getRandomMeal() {
 
     });
   });
+  return mealIngredients;
 }
 
 function renderMealIngredients(mealIngredients) {
@@ -92,6 +121,7 @@ function getRandomDrink() {
       drinkPictureEl.setAttribute("src", data.drinks[0].strDrinkThumb);
     });
   });
+  return drinkIngredients;
 }
 
 function renderDrinkIngredients(ingredients) {
