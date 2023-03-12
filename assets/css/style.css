@@ -40,3 +40,7 @@ a:hover {
     background-color: #4B2A3C ;
     width: 100%;
 }
+
+#hide {
+    display: none;
+}

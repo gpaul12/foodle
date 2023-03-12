@@ -38,23 +38,14 @@
           </div>
         </div>
       </div>
-      <!-- <div class="columns">
-      <div class="column has-text-centered" id="mealIngredients">
-        <h2>Your foodle recipe!</h2>
-
-      </div>
-      <div class="column has-text-centered" id="drinkIngredients">
-        <h2>Your foodle pairing!</h2>
-      </div>
-    </div> -->
-
-      <div class="columns">
-        <div class="card column">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="" alt="Placeholder image" id="mealPicture" />
-            </figure>
-          </div>
+      <section id="hide">
+        <div class="columns">
+          <div class="card column">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="" alt="Placeholder image" id="mealPicture" />
+              </figure>
+            </div>
           <div class="card-content">
             <div class="content">
               <div class="has-text-centered" id="mealIngredients">
@@ -80,20 +71,19 @@
         </div>
       </div>
 
-      <!-- jamie: adding these temporarily to show that they render when foodle button is clicked -->
-      <!-- <section id="drinkIngredients"></section>
-    <section id="mealIngredients"></section> -->
-      <div class="columns is-centered my-3">
-        <button
-          class="button is-normal is-rounded js-modal-trigger"
-          data-target="details-modal"
-          id="details-btn"
-        >
-          View Details
-        </button>
-        <button class="button is-normal is-rounded" id="clear-button">Clear</button>
-        <button class="button is-normal is-rounded" id="save-button">Save</button>
-      </div>
+        <div class="columns is-centered my-3">
+          <button
+            class="button is-normal is-rounded js-modal-trigger"
+            data-target="details-modal"
+            id="details-btn"
+          >
+            View Details
+          </button>
+          <button class="button is-normal is-rounded" id="clear-button">Clear</button>
+          <button class="button is-normal is-rounded" id="save-button">Save</button>
+        </div>
+    </section>
+    
       <div class="card">
         <div class="card-content">
           <div class="content has-text-centered" id="foodle-pairings">
@@ -103,6 +93,7 @@
           </div>
         </div>
       </div>
+      </section>
 
       <div class="modal" id="details-modal">
         <div class="modal-background"></div>

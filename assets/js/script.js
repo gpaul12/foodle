@@ -6,19 +6,22 @@ var drinkPictureEl = document.getElementById("drinkPicture");
 var saveButton = document.getElementById('save-button');
 var clearButton = document.getElementById('clear-button');
 var myFoodlesEl = document.getElementById('myFoodles');
+var hide = document.getElementById('hide');
 
 var myFoodles = [];
 var mealResult;
-var drinkResult;
+var drinkResult;  
 
 var modalInstructionsEl = document.getElementById("modal-instructions");
 var modalFoodtitleEl = document.getElementById("modal-food-title");
 var modalMealPicEl = document.getElementById("modal-meal-picture");
 var modalDrinkPicEl = document.getElementById("modal-drink-image-container");
 var modalMealIngEl = document.getElementById("modal-ingredients");
+var modalTitle = document.getElementById('modal-title');
 
 getFoodleButton.addEventListener("click", function () {
   // need to add code to clear out the previous foodle search before rendering the new one
+  hide.removeAttribute('id', 'hide');
   mealResult = getRandomMeal();
   drinkResult = getRandomDrink();
 });
@@ -51,6 +54,7 @@ saveButton.addEventListener('click', function() {
 
 clearButton.addEventListener('click', function(){
   localStorage.removeItem('myFoodles');
+  window.location.reload();
 });
 
 function getRandomMeal() {
@@ -69,6 +73,8 @@ function getRandomMeal() {
       modalMealPicEl.setAttribute("src", data.meals[0].strMealThumb);
       modalInstructionsEl.textContent = data.meals[0].strInstructions;
       modalFoodtitleEl.textContent = data.meals[0].strMeal;
+
+      modalTitle.textContent = data.meals[0].strMeal;
       
 
       var mealData = data.meals[0];
@@ -82,7 +88,7 @@ function getRandomMeal() {
           }
         }
       }
-      renderMealIngredients(mealIngredients);
+      renderMealIngredients(meal);
       mealPictureEl.setAttribute("src", data.meals[0].strMealThumb);
     });
   });
@@ -90,14 +96,16 @@ function getRandomMeal() {
   return meal;
 }
 
-function renderMealIngredients(mealIngredients) {
+function renderMealIngredients(meal) {
+  console.log('meal', meal);
+
   var mealIngredientsHeading = document.createElement("h2");
   mealIngredientsHeading.textContent = "Meal Ingredients";
   mealIngredientsEl.appendChild(mealIngredientsHeading);
 
-  for (var i = 0; i < mealIngredients.length; i++) {
+  for (var i = 0; i < meal.ingredients.length; i++) {
     var mealIngredientEl = document.createElement("p");
-    mealIngredientEl.textContent = mealIngredients[i];
+    mealIngredientEl.textContent = meal.ingredients[i];
     mealIngredientsEl.appendChild(mealIngredientEl);
   }
 }
@@ -117,7 +125,6 @@ function getRandomDrink() {
 
       modalDrinkPicEl.setAttribute("src", data.drinks[0].strDrinkThumb);
 
-
       var drinkData = data.drinks[0];
       for (var key in drinkData) {
         if (key.startsWith("strIngredient")) {
@@ -129,21 +136,23 @@ function getRandomDrink() {
           }
         }
       }
-      renderDrinkIngredients(drinkIngredients);
+      renderDrinkIngredients(drink);
       drinkPictureEl.setAttribute("src", data.drinks[0].strDrinkThumb);
     });
   });
   return drink;
 }
 
-function renderDrinkIngredients(ingredients) {
+function renderDrinkIngredients(drink) {
+  console.log('drink', drink);
+
   var drinkIngredientsHeading = document.createElement("h2");
   drinkIngredientsHeading.textContent = "Drink Ingredients";
   drinkIngredientsEl.appendChild(drinkIngredientsHeading);
 
-  for (var i = 0; i < ingredients.length; i++) {
-    var ingredientEl = document.createElement("p");
-    ingredientEl.textContent = ingredients[i];
+  for (var i = 0; i < drink.ingredients.length; i++) {
+    var ingredientEl = document.createElement('p');
+    ingredientEl.textContent = drink.ingredients[i];
     drinkIngredientsEl.appendChild(ingredientEl);
   }
 }
@@ -200,11 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function renderMyFoodles() {
   var savedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
+  console.log('savedFoodles', savedFoodles);
 
-  for (var i = 0; i < savedFoodles.length; i++) {
-    var myFoodlesMealPic = document.createElement('img');
-    myFoodlesMealPic.setAttribute('src', savedFoodles[i].mealImg);
-    myFoodlesEl.appendChild(myFoodlesMealPic);
+  if (savedFoodles) {
+
+    for (var i = 0; i < savedFoodles.length; i++) {
+      var myFoodlesMealPic = document.createElement('img');
+      myFoodlesMealPic.setAttribute('src', savedFoodles[i].mealImg);
+      myFoodlesEl.appendChild(myFoodlesMealPic);
+    }
   }
 }
 
