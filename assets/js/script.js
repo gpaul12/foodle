@@ -3,6 +3,8 @@ var mealIngredientsEl = document.getElementById("mealIngredients");
 var getFoodleButton = document.getElementById("get-foodle");
 var mealPictureEl = document.getElementById("mealPicture");
 var drinkPictureEl = document.getElementById("drinkPicture");
+var mealTitle = document.getElementById('meal-title');
+var drinkTitle = document.getElementById('drink-title');
 var saveButton = document.getElementById('save-button');
 var saveButtonModal = document.getElementById('save-foodle-btn');
 var clearButton = document.getElementById('clear-button');
@@ -13,15 +15,16 @@ var myFoodles = [];
 var mealResult;
 var drinkResult;  
 
-var modalInstructionsEl = document.getElementById("modal-instructions");
-var modalFoodtitleEl = document.getElementById("modal-food-title");
-var modalMealPicEl = document.getElementById("modal-meal-picture");
-var modalDrinkPicEl = document.getElementById("modal-drink-image-container");
-var modalMealIngEl = document.getElementById("modal-ingredients");
+var modalMealInstructionsEl = document.getElementById('modal-meal-instructions');
+var modalMealPicEl = document.getElementById('modal-meal-picture');
+var modalDrinkPicEl = document.getElementById('modal-drink-image-container');
+var modalMealIngredientsEl = document.getElementById('modal-meal-ingredients');
+var modalDrinkIngredientsEl = document.getElementById('modal-drink-ingredients')
 var modalTitle = document.getElementById('modal-title');
+var modalDrinkTitle = document.getElementById('modal-drink-title');
+var modalDrinkInstructionsEl = document.getElementById('modal-drink-instructions');
 
 getFoodleButton.addEventListener("click", function () {
-  // need to add code to clear out the previous foodle search before rendering the new one
   clearOldFoodle();
   hide.removeAttribute('id', 'hide');
   mealResult = getRandomMeal();
@@ -95,15 +98,13 @@ function getRandomMeal() {
       meal.title = data.meals[0].strMeal;
       meal.instructions = data.meals[0].strInstructions;
 
-      modalMealPicEl.setAttribute("src", data.meals[0].strMealThumb);
-      modalInstructionsEl.textContent = data.meals[0].strInstructions;
-      modalFoodtitleEl.textContent = data.meals[0].strMeal;
-
-      modalTitle.textContent = data.meals[0].strMeal;
+      modalMealPicEl.setAttribute('src', meal.img);
+      modalMealInstructionsEl.textContent = meal.instructions;
+      modalTitle.textContent = meal.title;
       
       var mealData = data.meals[0];
       for (var key in mealData) {
-        if (key.startsWith("strIngredient")) {
+        if (key.startsWith('strIngredient')) {
           if (!mealData[key]) {
             delete mealData[key];
           } else {
@@ -114,7 +115,7 @@ function getRandomMeal() {
       }
 
       for (var key in mealData) {
-        if (key.startsWith("strMeasure")) {
+        if (key.startsWith('strMeasure')) {
           if (!mealData[key]) {
             delete mealData[key];
           } else {
@@ -122,6 +123,12 @@ function getRandomMeal() {
             meal.measurements.push(singleMealMeasurement);
           }
         }
+      }
+
+      for (var i = 0; i < meal.ingredients.length; i++) {
+        var modalMealIngredientEl = document.createElement("p");
+        modalMealIngredientEl.textContent = meal.measurements[i] + ' ' + meal.ingredients[i];
+        modalMealIngredientsEl.appendChild(modalMealIngredientEl);
       }
       renderMealIngredients(meal);
     });
@@ -133,10 +140,7 @@ function getRandomMeal() {
 
 function renderMealIngredients(meal) {
 
-  var mealIngredientsHeading = document.createElement("h2");
-  mealIngredientsHeading.textContent = "Meal Ingredients";
-  mealIngredientsEl.appendChild(mealIngredientsHeading);
-
+  mealTitle.textContent = meal.title;
   mealPictureEl.setAttribute('src', meal.img);
 
   for (var i = 0; i < meal.ingredients.length; i++) {
@@ -160,11 +164,14 @@ function getRandomDrink() {
       drink.title = data.drinks[0].strDrink;
       drink.instructions = data.drinks[0].strInstructions;
 
-      modalDrinkPicEl.setAttribute("src", drink.img);
+      drinkTitle.textContent = drink.title;
+      modalDrinkTitle.textContent = drink.title;
+      modalDrinkPicEl.setAttribute('src', drink.img);
+      modalDrinkInstructionsEl.textContent = drink.instructions;
 
       var drinkData = data.drinks[0];
       for (var key in drinkData) {
-        if (key.startsWith("strIngredient")) {
+        if (key.startsWith('strIngredient')) {
           if (!drinkData[key]) {
             delete drinkData[key];
           } else {
@@ -175,7 +182,7 @@ function getRandomDrink() {
       }
 
       for (var key in drinkData) {
-        if (key.startsWith("strMeasure")) {
+        if (key.startsWith('strMeasure')) {
           if (!drinkData[key]) {
             delete drinkData[key];
           } else {
@@ -184,6 +191,13 @@ function getRandomDrink() {
           }
         }
       }
+
+      for (var i = 0; i < drink.ingredients.length; i++) {
+        var modalDrinkIngredientEl = document.createElement("p");
+        modalDrinkIngredientEl.textContent = drink.measurements[i] + ' ' + drink.ingredients[i];
+        modalDrinkIngredientsEl.appendChild(modalDrinkIngredientEl);
+      }
+
       renderDrinkIngredients(drink);
     });
   });
@@ -191,10 +205,6 @@ function getRandomDrink() {
 }
 
 function renderDrinkIngredients(drink) {
-
-  var drinkIngredientsHeading = document.createElement("h2");
-  drinkIngredientsHeading.textContent = "Drink Ingredients";
-  drinkIngredientsEl.appendChild(drinkIngredientsHeading);
 
   drinkPictureEl.setAttribute('src', drink.img);
 
@@ -263,7 +273,6 @@ function renderMyFoodles() {
     for (var i = 0; i < savedFoodles.length; i++) {
 
       // jamie - rendering saved meal information
-
       var myFoodlesMealTitle = document.createElement('h2');
       myFoodlesMealTitle.textContent = savedFoodles[i].mealTitle;
       myFoodlesEl.appendChild(myFoodlesMealTitle);
@@ -273,7 +282,6 @@ function renderMyFoodles() {
       myFoodlesEl.appendChild(myFoodlesMealPic);
 
       // jamie - rendering saved drink information
-
       var myFoodlesDrinkTitle = document.createElement('h2');
       myFoodlesDrinkTitle.textContent = savedFoodles[i].drinkTitle;
       myFoodlesEl.appendChild(myFoodlesDrinkTitle);
