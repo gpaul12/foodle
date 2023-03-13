@@ -42,6 +42,7 @@
         <div class="columns">
           <div class="card column">
             <div class="card-image">
+              <h2 class="has-text-centered" id="meal-title"></h2>
               <figure class="image is-4by3">
                 <img src="" alt="Placeholder image" id="mealPicture" />
               </figure>
@@ -57,6 +58,7 @@
 
         <div class="card column">
           <div class="card-image">
+            <h2 class="has-text-centered" id="drink-title"></h2>
             <figure class="image is-4by3">
               <img src="" alt="Placeholder image" id="drinkPicture" />
             </figure>
@@ -71,16 +73,16 @@
         </div>
       </div>
 
-        <div class="columns is-centered my-3">
-          <button
-            class="button is-normal is-rounded js-modal-trigger"
-            data-target="details-modal"
-            id="details-btn"
-          >
-            View Details
-          </button>
-          <button class="button is-normal is-rounded" id="save-button">Save Foodle</button>
-        </div>
+      <div class="columns is-centered my-3">
+        <button
+          class="button is-normal is-rounded js-modal-trigger"
+          data-target="details-modal"
+          id="details-btn"
+        >
+          View Details
+        </button>
+        <button class="button is-normal is-rounded" id="save-button">Save Foodle</button>
+      </div>
     </section>
 
       <div class="card">
@@ -107,17 +109,16 @@
           <section class="modal-card-body">
             <!-- Content ... -->
             <img src="" alt="Placeholder image" id="modal-meal-picture" />
-            <div id="modal-food-title"></div>
-            <div id="modal-instructions-title">Instructions</div>
-            <div id="modal-instructions"></div>
-            <div id="modal-ingredients-title">Ingredients</div>
-            <div id="modal-ingredients">
-              Ingredients placeholder with two columns hopefully
-            </div>
-            <div id="modal-pairing-phrase">
-              Enjoy your Food with your Drink!
-            </div>
+            <div class="is-size-4" id="modal-instructions-title">Instructions</div>
+            <div id="modal-meal-instructions"></div>
+            <div class="is-size-4" id="modal-ingredients-title">Ingredients</div>
+            <div id="modal-meal-ingredients"></div>
+            <div class="is-size-4" id="modal-drink-title"></div>
             <img src="" alt="Placeholder image" id="modal-drink-image-container"></img>
+            <div class="is-size-4">Instructions</div>
+            <div id="modal-drink-instructions"></div>
+            <div class="is-size-4">Ingredients</div>
+            <div id="modal-drink-ingredients"></div>
           </section>
           <footer class="modal-card-foot">
             <button class="button is-success" id="save-foodle-btn">
