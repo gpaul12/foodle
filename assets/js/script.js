@@ -22,6 +22,7 @@ var modalTitle = document.getElementById('modal-title');
 
 getFoodleButton.addEventListener("click", function () {
   // need to add code to clear out the previous foodle search before rendering the new one
+  clearOldFoodle();
   hide.removeAttribute('id', 'hide');
   mealResult = getRandomMeal();
   drinkResult = getRandomDrink();
@@ -285,3 +286,12 @@ function renderMyFoodles() {
 }
 
 renderMyFoodles();
+
+function clearOldFoodle() {
+  while (mealIngredientsEl.firstChild) {
+    mealIngredientsEl.removeChild(mealIngredientsEl.firstChild);
+  }
+  while (drinkIngredientsEl.firstChild) {
+    drinkIngredientsEl.removeChild(drinkIngredientsEl.firstChild);
+  }
+}
