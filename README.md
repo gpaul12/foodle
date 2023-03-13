@@ -33,9 +33,14 @@ https://gpaul12.github.io/foodle/
 
 ### Wireframe
 ![Template screenshot](./assets/imgs/wireframe-1.png)
+
 ### Screenshots
 ![Template screenshot](./assets/imgs/screenshot-1.png)
 ![Template screenshot](./assets/imgs/screenshot-2.png)
 ![Template screenshot](./assets/imgs/screenshot-3.png)
 ![Template screenshot](./assets/imgs/screenshot-4.png)
 ![Template screenshot](./assets/imgs/screenshot-5.png)
+
+## Contributors
+Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia Butler
+Bulma
