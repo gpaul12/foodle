@@ -36,11 +36,11 @@ https://gpaul12.github.io/foodle/
 ![Template screenshot](./assets/imgs/wireframe-1.png)
 
 ## Screenshots
-![Template screenshot](./assets/imgs/screenshot-1.png)
-![Template screenshot](./assets/imgs/screenshot-2.png)
-![Template screenshot](./assets/imgs/screenshot-3.png)
-![Template screenshot](./assets/imgs/screenshot-4.png)
-![Template screenshot](./assets/imgs/screenshot-5.png)
+![Template screenshot](./assets/imgs/Screenshot-1.png)
+![Template screenshot](./assets/imgs/Screenshot-2.png)
+![Template screenshot](./assets/imgs/Screenshot-3.png)
+![Template screenshot](./assets/imgs/Screenshot-4.png)
+![Template screenshot](./assets/imgs/Screenshot-5.png)
 
 #
 
