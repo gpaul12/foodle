@@ -4,6 +4,7 @@ var getFoodleButton = document.getElementById("get-foodle");
 var mealPictureEl = document.getElementById("mealPicture");
 var drinkPictureEl = document.getElementById("drinkPicture");
 var saveButton = document.getElementById('save-button');
+var saveButtonModal = document.getElementById('save-foodle-btn');
 var clearButton = document.getElementById('clear-button');
 var myFoodlesEl = document.getElementById('myFoodles');
 var hide = document.getElementById('hide');
@@ -27,6 +28,30 @@ getFoodleButton.addEventListener("click", function () {
 });
 
 saveButton.addEventListener('click', function() {
+
+  var myFoodle = {
+    mealIngredients: mealResult.ingredients,
+    mealImg: mealResult.img,
+    mealTitle: mealResult.title,
+    mealInstructions: mealResult.instructions,
+    drinkIngredients: drinkResult.ingredients,
+    drinkImg: drinkResult.img,
+    drinkTitle: drinkResult.title,
+    drinkInstructions: drinkResult.instructions,
+  };
+
+  var storedFoodles = JSON.parse(localStorage.getItem("myFoodles"));
+
+  if (storedFoodles !== null) {
+    myFoodles = storedFoodles;
+  }
+
+  myFoodles.push(myFoodle);
+  localStorage.setItem('myFoodles', JSON.stringify(myFoodles));
+  renderMyFoodles();
+});
+
+saveButtonModal.addEventListener('click', function() {
 
   var myFoodle = {
     mealIngredients: mealResult.ingredients,
@@ -134,7 +159,7 @@ function getRandomDrink() {
       drink.title = data.drinks[0].strDrink;
       drink.instructions = data.drinks[0].strInstructions;
 
-      modalDrinkPicEl.setAttribute("src", data.drinks[0].strDrinkThumb);
+      modalDrinkPicEl.setAttribute("src", drink.img);
 
       var drinkData = data.drinks[0];
       for (var key in drinkData) {
