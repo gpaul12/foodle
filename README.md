@@ -31,10 +31,10 @@ https://gpaul12.github.io/foodle/
 
 ## Usage
 
-### Wireframe
+## Wireframe
 ![Template screenshot](./assets/imgs/wireframe-1.png)
 
-### Screenshots
+## Screenshots
 ![Template screenshot](./assets/imgs/screenshot-1.png)
 ![Template screenshot](./assets/imgs/screenshot-2.png)
 ![Template screenshot](./assets/imgs/screenshot-3.png)
