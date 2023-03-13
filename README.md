@@ -14,6 +14,7 @@ Don't know what to eat?
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Contributors](#contributors)
 
 ## Description
 
@@ -40,6 +41,8 @@ https://gpaul12.github.io/foodle/
 ![Template screenshot](./assets/imgs/screenshot-3.png)
 ![Template screenshot](./assets/imgs/screenshot-4.png)
 ![Template screenshot](./assets/imgs/screenshot-5.png)
+
+#
 
 ## Contributors
 Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia Butler
