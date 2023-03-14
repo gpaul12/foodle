@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <!-- Nav Bar -->
   <nav class="navbar p-4 columns is-mobile">
     <div class="navbar-start column logo">
       <h1 class="has-text-left is-size-1">foodle</h1>
@@ -20,8 +21,9 @@
       <a class="" href="#foodle-pairings"> My foodles</a>
     </div>
   </nav>
+  <!-- Body content -->
   <main class=".container is-fluid mx-6">
-    <!-- mx-6 -->
+    <!-- Foodle Button -->
     <div class="card my-3">
       <div class="card-content">
         <div class="has-text-centered content">
@@ -34,10 +36,11 @@
         </div>
       </div>
     </div>
+    <!-- Foodle Pairing -->
     <section id="hide">
-      <div class="columns">
-        <!-- Foodle Recipe -->
-        <div class="card column">
+      <div class="container row">
+        <!-- Food card -->
+        <div class="card">
           <div class="card-image">
             <h2 class="has-text-centered" id="meal-title"></h2>
             <figure class="image is-4by3">
@@ -52,8 +55,8 @@
             </div>
           </div>
         </div>
-        <!-- Foodle Pairing -->
-        <div class="card column">
+        <!-- drink card -->
+        <div class="card">
           <div class="card-image">
             <h2 class="has-text-centered" id="drink-title"></h2>
             <figure class="image is-4by3">
@@ -69,7 +72,7 @@
           </div>
         </div>
       </div>
-
+      <!-- Save and View(Modal) buttons -->
       <div class="columns is-centered my-3">
         <button class="button is-normal is-rounded js-modal-trigger" data-target="details-modal" id="details-btn">
           View Details
@@ -104,7 +107,7 @@
           <button class="delete" aria-label="close" id="close-btn"></button>
         </header>
         <section class="modal-card-body">
-          <!-- Content ... -->
+          <!-- Modal Content -->
           <img src="" alt="Placeholder image" id="modal-meal-picture" />
           <div class="is-size-4" id="modal-instructions-title">Instructions</div>
           <div id="modal-meal-instructions"></div>

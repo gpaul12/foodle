@@ -2,7 +2,7 @@
 /* #373541 */
 
 .navbar {
-    color:#ffffff;
+    color: #ffffff;
     background-color: #4B2A3C;
 }
 
@@ -11,48 +11,61 @@ main {
 }
 
 .logo {
-    padding-left:30px;
+    padding-left: 30px;
 }
 
 body {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
-   color:#ffffff; 
+    color: #ffffff;
 }
 
 h2 {
-    color:#4B2A3C;
+    color: #4B2A3C;
     font-size: 24px;
 }
 
+.container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-gap: 1em;
+}
+
+.card {
+    height: max-content;
+}
+
+
 .button {
-    color:black;
-    background-color: #c37481;
+    color: black;
+    background-color: #7fc374;
 }
 
 .button:hover {
-    color:#4B2A3C;
+    color: #4B2A3C;
 }
 
 a {
-    color:#ffffff;
+    color: #ffffff;
 }
 
 a:hover {
-    color:#dbd9d4;
+    color: #dbd9d4;
 }
 
 
 .footer {
     color: #ffffff;
-    background-color: #4B2A3C ;
+    background-color: #4B2A3C;
     width: 100%;
     padding: 20px;
-    position: fixed; 
-    bottom: 0px; 
-    left: 0px; 
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
 }
 
 #hide {
