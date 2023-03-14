@@ -33,6 +33,9 @@ getFoodleButton.addEventListener("click", function () {
 
 saveButton.addEventListener('click', function() {
 
+  clearAllRenderedFoodles();
+
+
   var myFoodle = {
     mealIngredients: mealResult.ingredients,
     mealImg: mealResult.img,
@@ -50,13 +53,34 @@ saveButton.addEventListener('click', function() {
     myFoodles = storedFoodles;
   }
 
-  myFoodles.push(myFoodle);
+  if (storedFoodles) {
+
+    var found = false;
+    for(var i = 0; i < storedFoodles.length; i++) {
+        if (storedFoodles[i].mealTitle + storedFoodles[i].drinkTitle === myFoodle.mealTitle + myFoodle.drinkTitle) {
+            found = true;
+            break;
+        }
+    }
+
+    if (found) {
+      console.log('do nothing');
+     } else {
+      myFoodles.push(myFoodle);
+    }
+  } else {
+    myFoodles.push(myFoodle);
+  }
+
   localStorage.setItem('myFoodles', JSON.stringify(myFoodles));
   renderMyFoodles();
 });
 
 saveButtonModal.addEventListener('click', function() {
 
+  clearAllRenderedFoodles();
+
+
   var myFoodle = {
     mealIngredients: mealResult.ingredients,
     mealImg: mealResult.img,
@@ -74,7 +98,25 @@ saveButtonModal.addEventListener('click', function() {
     myFoodles = storedFoodles;
   }
 
-  myFoodles.push(myFoodle);
+  if (storedFoodles) {
+
+    var found = false;
+    for(var i = 0; i < storedFoodles.length; i++) {
+        if (storedFoodles[i].mealTitle + storedFoodles[i].drinkTitle === myFoodle.mealTitle + myFoodle.drinkTitle) {
+            found = true;
+            break;
+        }
+    }
+
+    if (found) {
+      console.log('do nothing');
+     } else {
+      myFoodles.push(myFoodle);
+    }
+  } else {
+    myFoodles.push(myFoodle);
+  }
+
   localStorage.setItem('myFoodles', JSON.stringify(myFoodles));
   renderMyFoodles();
 });
@@ -270,26 +312,29 @@ function renderMyFoodles() {
 
   if (savedFoodles) {
 
+    var myFoodlesContainer = document.createElement('div');
+
     for (var i = 0; i < savedFoodles.length; i++) {
 
       // jamie - rendering saved meal information
       var myFoodlesMealTitle = document.createElement('h2');
       myFoodlesMealTitle.textContent = savedFoodles[i].mealTitle;
-      myFoodlesEl.appendChild(myFoodlesMealTitle);
+      myFoodlesContainer.appendChild(myFoodlesMealTitle);
 
       var myFoodlesMealPic = document.createElement('img');
       myFoodlesMealPic.setAttribute('src', savedFoodles[i].mealImg);
-      myFoodlesEl.appendChild(myFoodlesMealPic);
+      myFoodlesContainer.appendChild(myFoodlesMealPic);
 
       // jamie - rendering saved drink information
       var myFoodlesDrinkTitle = document.createElement('h2');
       myFoodlesDrinkTitle.textContent = savedFoodles[i].drinkTitle;
-      myFoodlesEl.appendChild(myFoodlesDrinkTitle);
+      myFoodlesContainer.appendChild(myFoodlesDrinkTitle);
 
       var myFoodlesDrinkPic = document.createElement('img');
       myFoodlesDrinkPic.setAttribute('src', savedFoodles[i].drinkImg);
-      myFoodlesEl.appendChild(myFoodlesDrinkPic);
+      myFoodlesContainer.appendChild(myFoodlesDrinkPic);
     }
+    myFoodlesEl.appendChild(myFoodlesContainer);
   }
 }
 
@@ -301,5 +346,11 @@ function clearOldFoodle() {
   }
   while (drinkIngredientsEl.firstChild) {
     drinkIngredientsEl.removeChild(drinkIngredientsEl.firstChild);
+  }
+}
+
+function clearAllRenderedFoodles() {
+  while (myFoodlesEl.firstChild) {
+    myFoodlesEl.removeChild(myFoodlesEl.firstChild);
   }
 }
