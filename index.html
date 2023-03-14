@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Foodle</title>
-  </head>
 
-  <body>
-    <nav class="navbar p-4 columns is-mobile">
-      <div class="navbar-start column logo">
-        <h1 class="has-text-left is-size-1">foodle</h1>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Foodle</title>
+</head>
 
-      <div class="navbar-end column has-text-right is-size-4 my-foodle">
-        <a class="" href="#foodle-pairings"> My foodles</a>
-      </div>
-    </nav>
-    <main class=".container is-fluid mx-6">
-      <div class="card my-3">
-        <div class="card-content">
-          <div class="has-text-centered content">
-            <h2>In the mood for food but don't know what you want?</h2>
-          </div>
-          <div class="columns is-centered">
-            <button
-              id="get-foodle"
-              class="is-large has-text-centered button is-large is-rounded is-half"
-            >
-              foodle!
-            </button>
-          </div>
+<body>
+  <nav class="navbar p-4 columns is-mobile">
+    <div class="navbar-start column logo">
+      <h1 class="has-text-left is-size-1">foodle</h1>
+    </div>
+
+    <div class="navbar-end column has-text-right is-size-4 my-foodle">
+      <a class="" href="#foodle-pairings"> My foodles</a>
+    </div>
+  </nav>
+  <main class=".container is-fluid mx-6">
+    <div class="card my-3">
+      <div class="card-content">
+        <div class="has-text-centered content">
+          <h2>In the mood for food but don't know what you want?</h2>
+        </div>
+        <div class="columns is-centered">
+          <button id="get-foodle" class="button is-large has-text-centered is-rounded is-half">
+            foodle!
+          </button>
         </div>
       </div>
-      <section id="hide">
-        <div class="columns">
-          <div class="card column">
-            <div class="card-image">
-              <h2 class="has-text-centered" id="meal-title"></h2>
-              <figure class="image is-4by3">
-                <img src="" alt="Placeholder image" id="mealPicture" />
-              </figure>
-            </div>
+    </div>
+    <section id="hide">
+      <div class="columns">
+        <div class="card column">
+          <div class="card-image">
+            <h2 class="has-text-centered" id="meal-title"></h2>
+            <figure class="image is-4by3">
+              <img src="" alt="Placeholder image" id="mealPicture" />
+            </figure>
+          </div>
           <div class="card-content">
             <div class="content">
               <div class="has-text-centered" id="mealIngredients">
@@ -74,73 +69,74 @@
       </div>
 
       <div class="columns is-centered my-3">
-        <button
-          class="button is-normal is-rounded js-modal-trigger"
-          data-target="details-modal"
-          id="details-btn"
-        >
+        <button class="button is-normal is-rounded js-modal-trigger" data-target="details-modal" id="details-btn">
           View Details
         </button>
-        <button class="button is-normal is-rounded" id="save-button">Save Foodle</button>
+        <button class="button is-normal is-rounded" id="save-button">
+          Save Foodle
+        </button>
       </div>
     </section>
 
-      <div class="card">
-        <div class="card-content">
-          <div class="content has-text-centered" id="foodle-pairings">
-            <h2>My foodles</h2>
-          <button class="button is-normal is-rounded" id="clear-button">Clear My Foodles</button>
-            <!-- jamie: this where saved foodles will populate  -->
-            <section id="myFoodles"></section>
-          </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="content has-text-centered" id="foodle-pairings">
+          <h2>My foodles</h2>
+          <button class="button is-normal is-rounded" id="clear-button">
+            Clear My Foodles
+          </button>
+          <!-- jamie: this where saved foodles will populate  -->
+          <section id="myFoodles"></section>
         </div>
       </div>
-      </section>
-
-      <div class="modal" id="details-modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title" id="modal-title">
-              Placeholder for Food and Drink Title
-            </p>
-            <button class="delete" aria-label="close" id="close-btn"></button>
-          </header>
-          <section class="modal-card-body">
-            <!-- Content ... -->
-            <img src="" alt="Placeholder image" id="modal-meal-picture" />
-            <div class="is-size-4" id="modal-instructions-title">Instructions</div>
-            <div id="modal-meal-instructions"></div>
-            <div class="is-size-4" id="modal-ingredients-title">Ingredients</div>
-            <div id="modal-meal-ingredients"></div>
-            <div class="is-size-4" id="modal-drink-title"></div>
-            <img src="" alt="Placeholder image" id="modal-drink-image-container"></img>
-            <div class="is-size-4">Instructions</div>
-            <div id="modal-drink-instructions"></div>
-            <div class="is-size-4">Ingredients</div>
-            <div id="modal-drink-ingredients"></div>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success" id="save-foodle-btn">
-              Save Foodle
-            </button>
-            <button class="button" id="cancel-btn">Cancel</button>
-          </footer>
-        </div>
+    </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal" id="details-modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title" id="modal-title">
+            Placeholder for Food and Drink Title
+          </p>
+          <button class="delete" aria-label="close" id="close-btn"></button>
+        </header>
+        <section class="modal-card-body">
+          <!-- Content ... -->
+          <img src="" alt="Placeholder image" id="modal-meal-picture" />
+          <div class="is-size-4" id="modal-instructions-title">Instructions</div>
+          <div id="modal-meal-instructions"></div>
+          <div class="is-size-4" id="modal-ingredients-title">Ingredients</div>
+          <div id="modal-meal-ingredients"></div>
+          <div class="is-size-4" id="modal-drink-title"></div>
+          <img src="" alt="Placeholder image" id="modal-drink-image-container"></img>
+          <div class="is-size-4">Instructions</div>
+          <div id="modal-drink-instructions"></div>
+          <div class="is-size-4">Ingredients</div>
+          <div id="modal-drink-ingredients"></div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button" id="save-foodle-btn">
+            Save Foodle
+          </button>
+          <button class="button" id="cancel-btn">
+            Cancel
+          </button>
+        </footer>
       </div>
-    </main>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          foodle by
-          <a href="https://jgthms.com"
-            >Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia
-            Butler</a
-          >
-        </p>
-      </div>
-    </footer>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        foodle by
+        <a href="https://github.com/gpaul12/foodle">Erynn Affeldt, Gerry Paul, Jamie Nadel, Justin Nuzum, & Virginia
+          Butler</a>
+      </p>
+    </div>
+  </footer>
 
-    <script src="./assets/js/script.js"></script>
-  </body>
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>

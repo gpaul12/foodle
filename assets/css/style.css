@@ -19,12 +19,12 @@ h1 {
 }
 
 .button {
-    color:#ffffff;
-    background-color: #4B2A3C;
+    color:black;
+    background-color: #c37481;
 }
 
 .button:hover {
-    color:#dbd9d4;
+    color:#4B2A3C;
 }
 
 a {
