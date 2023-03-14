@@ -39,6 +39,19 @@ h2 {
     height: max-content;
 }
 
+.card-image {
+    width: 300px;
+}
+
+.saved-foodles {
+    width: 300px;
+    /* display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-gap: 1em; */
+
+}
 
 .button {
     color: black;
